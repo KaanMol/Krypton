@@ -8,6 +8,10 @@ exports.register = function(req, res) {
 		password: req.body.password,
 		email: req.body.email,
 		birthdate: req.body.birthdate,
+		privacy: {
+			profile: 0,
+			posts: 0
+		},
 		customURL: null,
 		customPreferences: {
 			theme: "standard"

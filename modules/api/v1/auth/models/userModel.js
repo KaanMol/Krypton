@@ -3,40 +3,44 @@
 var Schema = require('mongoose').Schema;
 
 var userScheme = new Schema({
-	firstName: { 
-  		type : String,
-  		required : true
-  	}, 
-  	lastName: { 
+	firstName: {
   		type : String,
   		required : true
   	},
-  	username: { 
-  		type : String, 
-  		unique : true, 
+  	lastName: {
+  		type : String,
   		required : true
   	},
-	  password: { 
-		  type : String, 
-		  required : true, 
+  	username: {
+  		type : String,
+  		unique : true,
+  		required : true
+  	},
+	  password: {
+		  type : String,
+		  required : true,
 		  select: false
 	  },
-	  email: { 
-  		type : String, 
-  		unique : true, 
+	  email: {
+  		type : String,
+  		unique : true,
   		required : true
   	},
-  	birthdate: { 
+  	birthdate: {
   		type : String,
   		required : true
   	},
-  	customURL: { 
-  		type : String, 
+		privacy: {
+  		type : Object,
+  		required : true
+  	},
+  	customURL: {
+  		type : String,
   		unique : true
   	},
-  	customPreferences: { 
+  	customPreferences: {
   		type : Object
-  	}, 
+  	},
 	admin: Boolean,
 	created: Date
 });

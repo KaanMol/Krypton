@@ -14,9 +14,22 @@ exports.profile = function(req, res) {
         			message: "Couldn't find user!"
         		});
 			} else {
-				res.json(user[0]);
+				if (user[0].privacy.profile == 0) {
+					res.json(user[0]);
+				} else if (user[0].privacy.profile == 1) {
+					// Make function to call database that can check if users are friends
+					// Reason for not making it YET: friends module not implemented
+					res.json(user[0]);
+				} else {
+					res.json({
+						firstName: user[0].firstName,
+						lastName: user[0].lastName,
+						customURL: user[0].customURL
+					})
+				}
+
 			}
 
-    		
+
 		});
 }
