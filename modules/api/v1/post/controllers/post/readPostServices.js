@@ -1,0 +1,45 @@
+'use strict';
+
+var Post = require('../../models/postModel'),
+		Connection = require('../../../connections/models/connectionModel'),
+		Id = require('../../../connections/controllers/connection/idPlacement');
+
+exports.readPost = function(req, res) {
+
+	Post.model
+		.find({
+			_id: req.params.id
+		})
+		.exec(function (err, post){
+
+			if (err) {
+				res.send("post doesn't exist")
+			} else if (!post.length) {
+				res.send('Post not found');
+			} else if (post[0].privacy == 3 && req.auth.userID == post[0].userID) {
+				res.send(post[0]);
+			} else if (req.auth.userID == post[0].userID) {
+				res.send(post[0]);
+			} else if (post[0].privacy == 0) {
+				res.send(post[0]);
+			} else  {
+
+				var id = Id.place(post[0].userID, req.auth.userID);
+
+				Connection.model
+					.find({
+						user1: id[0],
+						user2: id[1]
+					})
+					.exec(function (err, connection){
+						if (post[0].privacy == 1 && connection[0].connection == 1) {
+							res.send(post[0]);
+						} else if (post[0].privacy == 2) {
+							res.send('Function under construction.');
+						} else {
+							res.send('No permissions to view this post')
+						}
+					});
+			}
+	});
+}

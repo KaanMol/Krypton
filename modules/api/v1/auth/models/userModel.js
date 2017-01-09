@@ -1,8 +1,7 @@
 'use strict';
 
-var Schema = require('mongoose').Schema;
-
-var userScheme = new Schema({
+var Schema = require('mongoose').Schema,
+		userScheme = new Schema({
 	firstName: {
   		type : String,
   		required : true

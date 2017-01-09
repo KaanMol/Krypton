@@ -29,7 +29,5 @@ exports.profile = function(req, res) {
 				}
 
 			}
-
-
 		});
 }

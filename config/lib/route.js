@@ -1,13 +1,10 @@
 'use strict';
 var api = require('express').Router(),
 	router = require('express').Router(),
-	jwt = require('express-jwt'),
 	bodyParser = require('body-parser'),
-	config = require('../config'),
 	subdomain = require('express-subdomain');
 
 
-// router.use(jwt({secret: config.jwtSecret}));
 
 router.use(bodyParser.urlencoded({ extended: false }));
 

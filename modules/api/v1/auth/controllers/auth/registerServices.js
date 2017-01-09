@@ -29,9 +29,8 @@ exports.register = function(req, res) {
   		}
 
 		res.json({
-			success: true,
-			message: 'Enjoy your token!',
-			// token: jwt.sign({ exp: Math.floor(Date.now() / 1000) + (60*60), id:test._id }, secret)
+			success: 1,
+			token: jwt.sign({ /*exp: Math.floor(Date.now() / 1000) + (60*60), */id:test._id }, secret)
 		});
 	});
 }
