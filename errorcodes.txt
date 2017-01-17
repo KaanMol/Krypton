@@ -1,0 +1,29 @@
+TODO:
+Code optimalisation for connections
+
+post privacy:
+0 - global
+1 - only friends with follow
+2 - only followers
+3 - Only me
+
+connection codes:
+0 - pending request
+1 - following & friends
+2 - not following & friends
+3 - following & not friends
+4 - blocked
+
+
+0 = User not found
+1 = success
+10 = Wrong password
+4 = No results
+2 = User can't perform actions on his self
+3 = There is already a request
+5 = Unauthorized request
+
+
+ideas:
+- No game notifications
+- 

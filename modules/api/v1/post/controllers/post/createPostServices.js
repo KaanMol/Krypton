@@ -6,7 +6,7 @@ exports.createPost = function(req, res) {
 		privacy: req.body.privacy,
 		post: req.body.post,
 	  edited: [],
-	  posted: new Date()
+	  posted: (Date.now() / 1000)
 	});
 
 	newPost.save(function(err, test) {

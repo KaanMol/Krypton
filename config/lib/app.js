@@ -3,6 +3,7 @@ var express = require('express'),
 	app = express(),
 	config = require('../config'),
 	mongoose = require('mongoose');
+const path = require('path');
 mongoose.Promise = global.Promise;
 
 //Connect to the database

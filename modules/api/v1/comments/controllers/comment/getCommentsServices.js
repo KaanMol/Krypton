@@ -2,11 +2,10 @@
 
 var Comments = require('../../models/commentModel');
 
-exports.getComment = function (req, res) {
+exports.getComments = function (req, res) {
 
   Comments.model
     .find({
-      _id: req.params.commentID,
       postID: req.params.id
     })
     .exec(function (err, post){
@@ -15,8 +14,7 @@ exports.getComment = function (req, res) {
         return;
       }
 
-      res.json(post[0])
+      res.json(post)
 
     });
-
 }

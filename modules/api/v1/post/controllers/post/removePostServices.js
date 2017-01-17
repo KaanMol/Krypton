@@ -1,4 +1,5 @@
-var Post = require('../../models/postModel');
+var Post = require('../../models/postModel'),
+		Comments = require('../../../comments/models/commentModel');
 
 exports.removePost = function(req, res) {
 
@@ -7,21 +8,34 @@ exports.removePost = function(req, res) {
 			_id: req.params.id
 		})
 		.exec(function (err, post){
-			if(req.auth.userID == post[0].userID) {
-				post[0].remove(function (err, success){
-						if (err) {
-							res.json({
-								statusCode: 4
+
+			Comments.model
+		    .find({
+		      postID: post[0]._id
+		    })
+		    .exec(function (err, comments){
+					if(req.auth.userID == post[0].userID) {
+						post[0].remove(function (err, success){
+								if (err) {
+									res.json({
+										statusCode: 4
+									});
+								} else {
+									res.json({
+										statusCode: 1
+									});
+								}
 							});
-						} else {
-							res.json({
-								statusCode: 1
-							});
-						}
-					})
-			} else {
-				res.send('You dont have the permissions to remove this post')
-			}
+							comments.remove(function (err, success){});
+					} else {
+						res.send('You dont have the permissions to remove this post')
+					}
+
+
+		  });
+
+
+
 		});
 
 }

@@ -32,12 +32,12 @@ exports.editPost = function(req, res) {
 							},
 							{
 								post: req.body.post,
-								time: new Date()
+								time: (Date.now() / 1000)
 							});
 						} else {
 							post[0].edited.push({
 								post: req.body.post,
-								time: new Date()
+								time: (Date.now() / 1000)
 							});
 						}
 						post[0].post = req.body.post;

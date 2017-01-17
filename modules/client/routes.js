@@ -1,8 +1,8 @@
 'use strict';
 var router = require('express').Router();
-
-router.get('/main', function (req, res) {
-	res.send('client, bitch')
+const path = require('path');
+router.get('/', function (req, res) {
+	res.sendFile(path.resolve("./modules/client/core/view/page_view.html"));
 });
 
 module.exports = router;

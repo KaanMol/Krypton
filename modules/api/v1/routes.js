@@ -9,4 +9,6 @@ router.use('/user', require('./users/routes/routes'));
 
 router.use('/post', require('./post/routes/routes'));
 
+router.use('/comment', require('./comments/routes/routes'));
+
 module.exports = router;
