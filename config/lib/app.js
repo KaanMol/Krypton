@@ -2,8 +2,15 @@
 var express = require('express'),
 	app = express(),
 	config = require('../config'),
-	mongoose = require('mongoose');
+	mongoose = require('mongoose'),
+	https = require('https'),
+	fs = require('fs');
 const path = require('path');
+
+var privateKey  = fs.readFileSync('./config/cert/kaan_nodeJS.key', 'utf8'),
+		certificate = fs.readFileSync('./config/cert/kaan_nodeJS.crt', 'utf8'),
+		credentials = { key: privateKey, cert: certificate };
+
 mongoose.Promise = global.Promise;
 
 //Connect to the database
@@ -17,8 +24,5 @@ exports.start = function() {
 
 
 	app.use('/', require('./route'));
-
-	app.listen(config.port,config.host, function () {
-  		console.log('%s services are online at %s://%s:%s', config.appName, config.webProtocol, config.host, config.port);
-	});
+https.createServer(credentials, app).listen(443);
 };
