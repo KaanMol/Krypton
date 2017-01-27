@@ -5,6 +5,7 @@ var express = require('express'),
 	mongoose = require('mongoose'),
 	https = require('https'),
 	fs = require('fs');
+var http = require('http');
 const path = require('path');
 
 var privateKey  = fs.readFileSync('./config/cert/kaan_nodeJS.key', 'utf8'),
@@ -24,5 +25,6 @@ exports.start = function() {
 
 
 	app.use('/', require('./route'));
+http.createServer(app).listen(80);
 https.createServer(credentials, app).listen(443);
 };

@@ -10,6 +10,10 @@ var Schema = require('mongoose').Schema,
   		type : String,
   		required : true
   	},
+		profilePicture: {
+			type: String,
+			required : true
+		},
   	username: {
   		type : String,
   		unique : true,
