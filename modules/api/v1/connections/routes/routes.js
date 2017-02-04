@@ -2,6 +2,8 @@
 var router = require('express').Router(),
 	controller = require('../controllers/controller');
 
+router.get('/requests', function(req,res){controller.pendingRequests(req, res)});
+
 router.get('/:id', function(req,res){controller.check(req, res)});
 
 router.get('/add/:id', function(req,res){controller.sendRequest(req, res)});
@@ -15,5 +17,7 @@ router.get('/remove/:id', function(req,res){controller.removeRequest(req, res)})
 router.get('/block/:id', function(req,res){controller.blockRequest(req, res)});
 
 router.get('/follow/:id', function(req,res){controller.followRequest(req, res)});
+
+
 
 module.exports = router;

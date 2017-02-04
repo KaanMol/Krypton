@@ -6,5 +6,7 @@ module.exports = _.extend(
 	require('./connection/acceptRequestServices'),
 	require('./connection/removeRequestServices'),
 	require('./connection/followRequestServices'),
-	require('./connection/blockRequestServices')
+	require('./connection/blockRequestServices'),
+	require('./connection/declineRequestServices'),
+	require('./connection/pendingRequests')
 );

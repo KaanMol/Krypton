@@ -4,9 +4,9 @@ var express = require('express'),
 	config = require('../config'),
 	mongoose = require('mongoose'),
 	https = require('https'),
-	fs = require('fs');
-var http = require('http');
-const path = require('path');
+	fs = require('fs'),
+	http = require('http'),
+	path = require('path');
 
 var privateKey  = fs.readFileSync('./config/cert/kaan_nodeJS.key', 'utf8'),
 		certificate = fs.readFileSync('./config/cert/kaan_nodeJS.crt', 'utf8'),
@@ -19,12 +19,8 @@ mongoose.connect('mongodb://'+config.host+'/'+config.appName);
 
 exports.start = function() {
 
-	if(config.hostType = "local") {
-		app.set('subdomain offset', 1);
-	}
-
-
 	app.use('/', require('./route'));
+
 http.createServer(app).listen(80);
 https.createServer(credentials, app).listen(443);
 };
