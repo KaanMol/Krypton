@@ -11,4 +11,6 @@ router.use('/post', require('./post/routes/routes'));
 
 router.use('/comment', require('./comments/routes/routes'));
 
+router.use('/search', require('./search/routes/routes'));
+
 module.exports = router;

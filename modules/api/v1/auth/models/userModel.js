@@ -16,7 +16,7 @@ var Schema = require('mongoose').Schema,
 		salt: {
 			type: String,
 			required: true
-		}
+		},
   	username: {
   		type : String,
   		unique : true,
