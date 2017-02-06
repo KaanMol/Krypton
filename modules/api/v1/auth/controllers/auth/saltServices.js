@@ -1,5 +1,5 @@
 'use strict';
-exports.verify = function(req, res) {
+exports.salt = function(req, res) {
   User.model
     .find({
       username: req.body.username

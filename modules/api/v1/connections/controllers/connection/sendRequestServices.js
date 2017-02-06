@@ -49,7 +49,7 @@ exports.sendRequest = function(req, res) {
 											return;
 										}
 
-										res.send("success");
+										res.json({statusCode: 1});
 									});
 								}
 						});
