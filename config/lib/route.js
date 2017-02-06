@@ -13,9 +13,9 @@ router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
 
 // Routes for API version 1
-router.use('/v1', require('../../modules/api/routes'));
+router.use('/', require('../../modules/api/routes'));
 // Routes for client
-router.use('/', require('../../modules/client/routes'));
+// router.use('/', require('../../modules/client/routes'));
 
 
 module.exports = router

@@ -11,9 +11,12 @@ var Schema = require('mongoose').Schema,
   		required : true
   	},
 		profilePicture: {
-			type: String,
-			required : true
+			type: String
 		},
+		salt: {
+			type: String,
+			required: true
+		}
   	username: {
   		type : String,
   		unique : true,
@@ -38,8 +41,7 @@ var Schema = require('mongoose').Schema,
   		required : true
   	},
   	customURL: {
-  		type : String,
-  		unique : true
+  		type : String
   	},
   	customPreferences: {
   		type : Object

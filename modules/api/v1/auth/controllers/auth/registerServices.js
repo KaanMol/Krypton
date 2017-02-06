@@ -7,7 +7,9 @@ exports.register = function(req, res) {
 		username: req.body.username,
 		password: req.body.password,
 		email: req.body.email,
+		salt: req.body.salt,
 		birthdate: req.body.birthdate,
+		profilePicture: null,
 		privacy: {
 			profile: 0,
 			posts: 0
@@ -28,9 +30,6 @@ exports.register = function(req, res) {
     		return;
   		}
 
-		res.json({
-			success: 1,
-			token: require('jsonwebtoken').sign({ /*exp: Math.floor(Date.now() / 1000) + (60*60), */id:test._id }, "secret")
-		});
+		res.send(test);
 	});
 }

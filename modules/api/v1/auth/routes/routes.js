@@ -8,4 +8,6 @@ router.post('/register', function(req,res){controller.register(req, res)});
 
 router.get('/verify', function(req,res){controller.verify(req, res)});
 
+router.post('/salt', function(req,res){controller.salt(req, res)});
+
 module.exports = router;
