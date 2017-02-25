@@ -1,5 +1,6 @@
 'use strict';
-var User = require('../../models/userModel');
+var User = require('../../models/userModel'),
+		config = require('../../../../../../config/config');
 exports.register = function(req, res) {
 	var user = new User.model({
 		firstName: req.body.firstName,
@@ -30,6 +31,9 @@ exports.register = function(req, res) {
     		return;
   		}
 
-		res.send(test);
+			res.json({
+					success: 1,
+					token: require('jsonwebtoken').sign({ /*exp: Math.floor(Date.now() / 1000) + (60*60),*/userID: test._id, admin: test.admin }, config.jwtSecret)
+				});
 	});
 }

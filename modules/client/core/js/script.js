@@ -1,11 +1,12 @@
-var app = angular.module("Project-Krypton", ["ngRoute"]);
+var app = angular.module("myApp", ["ngRoute"]);
+app.config(function($routeProvider, $locationProvider) {
+    $routeProvider
+    .when("/", {
+        templateUrl : "modules/auth/view/login_view.html"
+    })
+    .when("/register", {
+        templateUrl : "modules/auth/view/register_view.html"
+    });
 
-app.config(function($routeProvider) {
-  $routeProvider
-  .when("/", {
-    templateUrl : "../../auth/view/index_view.html"
-  })
-  .when("/login", {
-    templateUrl : "../../auth/view/login_view.html"
-  });
+    $locationProvider.html5Mode(true);
 });

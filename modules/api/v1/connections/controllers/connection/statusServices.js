@@ -11,8 +11,8 @@ exports.check = function(req, res) {
 		if (req.params.id == "all") {
 			Connection.model
 				.find({
-					receiver: req.auth.userID,
-					connection: 0
+					$or: [{user1: req.auth.userID}, {user2: req.auth.userID}],
+					connection: 1
 				})
 				.exec(function (err, connection){
 					if (err) {
@@ -34,13 +34,13 @@ exports.check = function(req, res) {
 				})
 				.exec(function (err, connection){
 					if (err) {
-						res.json({
+						res.json([{
 							success: 4
-						});
+						}]);
 					} else if (!connection.length){
-						res.json({
+						res.json([{
 							success: 4
-						});
+						}]);
 					} else {
 	          Connection.model
 	            .find({
@@ -49,7 +49,7 @@ exports.check = function(req, res) {
 	            })
 	            .exec(function (err, connection){
 	              if (err) {
-	                res.send("connection doesn't exist")
+	                res.json([{statusCode: 4}])
 	              } else {
 	                res.json(connection[0])
 	              }

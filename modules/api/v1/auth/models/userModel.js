@@ -46,6 +46,10 @@ var Schema = require('mongoose').Schema,
   	customPreferences: {
   		type : Object
   	},
+		security: {
+			type : Object,
+			select: false
+		},
 	admin: Boolean,
 	created: Date
 });

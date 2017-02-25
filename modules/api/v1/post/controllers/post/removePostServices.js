@@ -20,15 +20,15 @@ exports.removePost = function(req, res) {
 									res.json({
 										statusCode: 4
 									});
-								} else {
+								}
 									res.json({
 										statusCode: 1
 									});
-								}
+
 							});
 							comments.remove(function (err, success){});
 					} else {
-						res.send('You dont have the permissions to remove this post')
+						res.json({statusCode: 5});
 					}
 
 
