@@ -6,6 +6,8 @@ var express = require('express'),
 	https = require('https'),
 	fs = require('fs'),
 	http = require('http'),
+	net = require('net'),
+	messenger = require('../../modules/api/v1/messenger/request'),
 	path = require('path');
 
 var privateKey  = fs.readFileSync('./config/cert/kaan_nodeJS.key', 'utf8'),
@@ -21,6 +23,9 @@ exports.start = function() {
 
 	app.use('/', require('./route'));
 
+
+net.createServer(function(socket) {messenger.controller(socket)}).listen(9752);
 http.createServer(app).listen(80);
 https.createServer(credentials, app).listen(443);
+console.log("Server ONLINE");
 };

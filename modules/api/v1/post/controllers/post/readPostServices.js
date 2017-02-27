@@ -22,7 +22,7 @@ exports.readPost = function(req, res) {
 				res.send(post[0]);
 			} else if (post[0].privacy == 0) {
 				res.send(post[0]);
-			} else  {
+			} else {
 
 				var id = Id.place(post[0].userID, req.auth.userID);
 
