@@ -29,16 +29,15 @@ exports.register = function(req, res) {
 		.find({
 			username: req.body.username
 		})
-		.exec(function (err, user){
-			if (user.length != 0) {res.json({statusCode: "duplicate username"}); return;}
+		.exec(function (err, ruser){
+			if (ruser.length != 0) {res.json({statusCode: "duplicate username"}); return;}
 			User.model
 				.find({
 					email: req.body.email
 				})
-				.exec(function (err, user){
-					if (user.length != 0) {return res.json({statusCode: "duplicate email"}); }
+				.exec(function (err, ruser){
+					if (ruser.length != 0) {return res.json({statusCode: "duplicate email"}); }
 					user.save(function(err, test) {
-						console.log(err)
 						if ( err && err.code !== 11000 ) {
 								console.log(err);
 								console.log(err.code);
