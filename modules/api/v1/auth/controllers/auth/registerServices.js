@@ -22,7 +22,7 @@ exports.register = function(req, res) {
 			theme: "standard"
 		},
 		admin: false,
-		created: new Date()
+		created: Math.floor(Date.now() / 1000)
 	});
 
 	User.model

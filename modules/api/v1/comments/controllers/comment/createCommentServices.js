@@ -6,7 +6,7 @@ exports.createComment = function(req, res) {
 		postID: req.params.id,
 		post: req.body.post,
 	  edited: [],
-	  created: new Date()
+	  created: Math.floor(Date.now() / 1000)
 	});
 
 	newComment.save(function(err, test) {
