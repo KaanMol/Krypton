@@ -2,11 +2,11 @@
 
 var Schema = require('mongoose').Schema,
 		userScheme = new Schema({
-	firstName: {
+		firstname: {
   		type : String,
   		required : true
   	},
-  	lastName: {
+  	lastname: {
   		type : String,
   		required : true
   	},
