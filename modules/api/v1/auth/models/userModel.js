@@ -51,7 +51,7 @@ var Schema = require('mongoose').Schema,
 			select: false
 		},
 	admin: Boolean,
-	created: Date
+	created: Number
 });
 
 

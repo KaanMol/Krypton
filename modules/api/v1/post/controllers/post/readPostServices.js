@@ -2,6 +2,7 @@
 
 var Post = require('../../models/postModel'),
 		Connection = require('../../../connections/models/connectionModel'),
+		User = require('../../../auth/models/userModel'),
 		Id = require('../../../connections/controllers/connection/idPlacement');
 
 exports.readPost = function(req, res) {
@@ -11,7 +12,6 @@ exports.readPost = function(req, res) {
 			_id: req.params.id
 		})
 		.exec(function (err, post){
-
 			if (err) {
 				res.send("post doesn't exist")
 			} else if (!post.length) {

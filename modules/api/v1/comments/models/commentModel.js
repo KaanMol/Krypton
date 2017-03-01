@@ -15,7 +15,7 @@ var Schema = require('mongoose').Schema,
 		required : true
 	},
 	edited: Array,
-	created: Date
+	created: Number
 });
 
 
