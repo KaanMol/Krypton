@@ -19,7 +19,7 @@ var Schema = require('mongoose').Schema,
 		},
 	  edited: Array,
 	  posted: Number
-});
+}, { versionKey: false });
 
 
 
