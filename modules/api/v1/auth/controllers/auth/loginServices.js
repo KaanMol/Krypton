@@ -7,24 +7,33 @@ exports.login = function(req, res) {
 			username: req.body.username
 		})
 		.select('+password')
+		.select('+salt')
 		.exec(function (err, user){
 			if (err) {
-				console.log("Unexpected error!");
+				res.status(500).json({message: "Unexpected error"})
 			};
 
 			if (!user.length) {
-        		res.json({
-        			success: 0
-        		});
-    		} else {
-    			if (req.body.password == user[0].password) {
-	    			res.json({
-	        			success: 1,
-	        			token: require('jsonwebtoken').sign({ /*exp: Math.floor(Date.now() / 1000) + (60*60),*/userID: user[0]._id, admin: user[0].admin }, config.jwtSecret)
-	        		});
-	        	} else {
-	        		res.json({success: 10});
-	        	}
-	   		}
+        		res.status(401).json({message: 'USER_NOT_FOUND'});
+  		} else {
+				var crypto = require('crypto'),
+						password = crypto.createHash('sha256')
+							.update(req.body.password)
+							.digest('hex'),
+						saltedPassword = crypto.createHmac('sha256', user[0].salt)
+							.update(password)
+							.digest('hex');
+  			if (saltedPassword == user[0].password) {
+  				res.json({
+      			token: require('jsonwebtoken').sign({
+							 /*exp: Math.floor(Date.now() / 1000) + (60*60),*/
+							 userID: user[0]._id,
+							 admin: user[0].admin
+						 }, config.jwtSecret)
+      		});
+      	} else {
+      		res.status(401).json({message: 'BAD_CREDENTIALS'});
+      	}
+   		}
 		});
 }

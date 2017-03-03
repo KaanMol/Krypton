@@ -3,14 +3,19 @@ var User = require('../../models/userModel'),
 		config = require('../../../../../../config/config');
 
 exports.register = function(req, res) {
-
-	var user = new User.model({
+	var crypto = require('crypto'),
+			salt = crypto.randomBytes(16).toString('hex'),
+			password = crypto.createHash('sha256').update(req.body.password).digest('hex'),
+			saltedPassword = crypto.createHmac('sha256', salt)
+				.update(password)
+				.digest('hex');
+	var newUser = new User.model({
 		firstname: req.body.firstname,
 		lastname: req.body.lastname,
 		username: req.body.username,
-		password: req.body.password,
+		password: saltedPassword,
 		email: req.body.email,
-		salt: req.body.salt,
+		salt: salt,
 		birthdate: req.body.birthdate,
 		profilePicture: null,
 		privacy: {
@@ -29,26 +34,39 @@ exports.register = function(req, res) {
 		.find({
 			username: req.body.username
 		})
-		.exec(function (err, ruser){
-			if (ruser.length != 0) {res.json({statusCode: "duplicate username"}); return;}
+		.exec(function (err, nameCheck){
+			if (nameCheck.length != 0) {
+				res.status(409).json({
+					message: "DUPLICATE_USERNAME"
+				});
+				return;
+			}
+
 			User.model
 				.find({
 					email: req.body.email
 				})
-				.exec(function (err, ruser){
-					if (ruser.length != 0) {return res.json({statusCode: "duplicate email"}); }
-					user.save(function(err, test) {
-						if ( err && err.code !== 11000 ) {
-								console.log(err);
-								console.log(err.code);
-								res.send('Another error showed up');
-								return;
-							}
+				.exec(function (err, emailCheck) {
+					if (emailCheck.length != 0) {
+						res.status(409).json({
+							message: "DUPLICATE_EMAIL"
+						});
+						return;
+					}
 
-							res.json({
-									success: 1,
-									token: require('jsonwebtoken').sign({ /*exp: Math.floor(Date.now() / 1000) + (60*60),*/userID: test._id, admin: test.admin }, config.jwtSecret)
-								});
+					newUser.save(function(err, user) {
+						if ( err && err.code !== 11000 ) {
+							console.log(err);
+							res.status(500).json({message: "Unexpected error"});
+							return;
+						}
+						res.json({
+							token: require('jsonwebtoken').sign({
+								/*exp: Math.floor(Date.now() / 1000) + (60*60),*/
+								userID: user._id,
+								admin: user.admin
+							}, config.jwtSecret)
+						});
 					});
 				});
 		});

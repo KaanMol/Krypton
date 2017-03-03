@@ -15,7 +15,8 @@ var Schema = require('mongoose').Schema,
 		},
 		salt: {
 			type: String,
-			required: true
+			required: true,
+			select: false
 		},
   	username: {
   		type : String,
