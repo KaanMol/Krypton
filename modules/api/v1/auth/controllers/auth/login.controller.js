@@ -1,4 +1,4 @@
-var User = require('../../models/userModel'),
+var User = require('../../models/user.model'),
 		config = require('../../../../../../config/config');
 
 exports.login = function(req, res) {

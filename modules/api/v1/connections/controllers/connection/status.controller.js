@@ -1,8 +1,8 @@
 'use strict';
 
-var Connection = require('../../models/connectionModel'),
-		User = require('../../../auth/models/userModel'),
-		Id = require('../../controllers/connection/idPlacement');
+var Connection = require('../../models/connection.model'),
+		User = require('../../../auth/models/user.model'),
+		Id = require('../../controllers/connection/id.controller');
 
 exports.check = function(req, res) {
 
@@ -20,9 +20,7 @@ exports.check = function(req, res) {
 							success: 4
 						});
 					} else if (!connection.length){
-						res.json({
-							success: 4
-						});
+						res.json([]);
 					} else {
 						res.json(connection)
 					}

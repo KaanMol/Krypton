@@ -1,4 +1,4 @@
-var Post = require('../../models/postModel');
+var Post = require('../../models/post.model');
 
 exports.editPost = function(req, res) {
 	Post.model

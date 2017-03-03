@@ -1,4 +1,4 @@
-var Comments = require('../../models/commentModel');
+var Comments = require('../../models/comment.model');
 
 exports.createComment = function(req, res) {
 	var newComment = new Comments.model({

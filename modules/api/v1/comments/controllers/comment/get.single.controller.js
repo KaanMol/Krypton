@@ -1,11 +1,12 @@
 'use strict';
 
-var Comments = require('../../models/commentModel');
+var Comments = require('../../models/comment.model');
 
-exports.getComments = function (req, res) {
+exports.getComment = function (req, res) {
 
   Comments.model
     .find({
+      _id: req.params.commentID,
       postID: req.params.id
     })
     .exec(function (err, post){
@@ -14,7 +15,8 @@ exports.getComments = function (req, res) {
         return;
       }
 
-      res.json(post)
+      res.json(post[0])
 
     });
+
 }

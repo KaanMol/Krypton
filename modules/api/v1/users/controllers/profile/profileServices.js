@@ -1,4 +1,4 @@
-var User = require('../../../auth/models/userModel');
+var User = require('../../../auth/models/user.model');
 
 exports.profile = function(req, res) {
 	User.model

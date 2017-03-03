@@ -1,9 +1,9 @@
 'use strict';
 
-var Post = require('../../models/postModel'),
-		Connection = require('../../../connections/models/connectionModel'),
-		User = require('../../../auth/models/userModel'),
-		Id = require('../../../connections/controllers/connection/idPlacement');
+var Post = require('../../models/post.model'),
+		Connection = require('../../../connections/models/connection.model'),
+		User = require('../../../auth/models/user.model'),
+		Id = require('../../../connections/controllers/connection/id.controller');
 
 exports.allPosts = function(req, res) {
 

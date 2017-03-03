@@ -1,6 +1,6 @@
 'use strict';
 
-var Comments = require('../../models/commentModel');
+var Comments = require('../../models/comment.model');
 
 exports.removeComment = function(req,res) {
   Comments.model

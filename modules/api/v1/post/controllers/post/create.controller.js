@@ -1,4 +1,4 @@
-var Post = require('../../models/postModel');
+var Post = require('../../models/post.model');
 
 exports.createPost = function(req, res) {
 	var newPost = new Post.model({

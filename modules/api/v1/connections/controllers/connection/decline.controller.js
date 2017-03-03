@@ -1,23 +1,21 @@
 'use strict';
 
-var Connection = require('../../models/connectionModel'),
-		Id = require('../../controllers/connection/idPlacement');
+var Connection = require('../../models/connection.model');
 
-exports.removeRequest = function(req, res) {
-
-	var id = Id.place(req.auth.userID, req.params.id);
+exports.declineRequest = function(req, res) {
 
 		Connection.model
 			.find({
-				user1: id[0],
-				user2: id[1]
+				sender: req.params.id,
+				receiver: req.auth.userID,
+				connection: 0
 			})
 			.exec(function (err, connection){
 				if (err) {
 					res.json({
 						statusCode: 4
 					});
-				} else if (!connection.length) {
+				} else if (!connection.length){
 					res.json({
 						statusCode: 4
 					});
@@ -34,5 +32,5 @@ exports.removeRequest = function(req, res) {
 							}
 						})
 				}
-			});
+		});
 }

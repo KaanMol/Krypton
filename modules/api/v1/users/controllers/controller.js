@@ -1,6 +1,6 @@
 var _ = require('lodash');
 
 module.exports = _.extend(
-	require('./profile/profileServices'),
-	require('./profile/profilePictureServices')
+	require('./profile/profile.controller'),
+	require('./profile/profile.picture.controller')
 );

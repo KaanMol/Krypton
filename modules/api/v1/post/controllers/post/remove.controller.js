@@ -1,5 +1,5 @@
-var Post = require('../../models/postModel'),
-		Comments = require('../../../comments/models/commentModel');
+var Post = require('../../models/post.model'),
+		Comments = require('../../../comments/models/comment.model');
 
 exports.removePost = function(req, res) {
 

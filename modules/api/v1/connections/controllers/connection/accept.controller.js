@@ -1,6 +1,6 @@
 'use strict';
 
-var Connection = require('../../models/connectionModel');
+var Connection = require('../../models/connection.model');
 
 exports.acceptRequest = function(req, res) {
 

@@ -1,7 +1,7 @@
 'use strict';
 
-var Connection = require('../../models/connectionModel'),
-		Id = require('../../controllers/connection/idPlacement');
+var Connection = require('../../models/connection.model'),
+		Id = require('../../controllers/connection/id.controller');
 
 exports.pendingRequests = function (req, res) {
   Connection.model
