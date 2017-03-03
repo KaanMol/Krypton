@@ -11,9 +11,7 @@ exports.createComment = function(req, res) {
 
 	newComment.save(function(err, test) {
 		if ( err && err.code !== 11000 ) {
-			console.log(err);
-			console.log(err.code);
-			res.send('Another error showed up');
+			res.status(500).json({message: "UNEXPECTED_ERROR"});
 			return;
 		}
 

@@ -8,15 +8,13 @@ exports.username = function(req, res) {
 		})
 		.exec(function (err, user){
 			if (err) {
-				console.log("Unexpected error!");
+				res.status(500).json({message: 'UNEXPECTED_ERROR'});
 			};
 
 			if (!user.length) {
-        		res.json({
-        			success: 0
-        		});
-    		} else {
-    			res.json(user)
-	   		}
+    		res.status(404).json({message: 'USER_NOT_FOUND'});
+  		} else {
+  			res.json(user)
+   		}
 		});
 }

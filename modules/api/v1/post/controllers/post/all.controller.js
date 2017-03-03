@@ -11,11 +11,11 @@ exports.allPosts = function(req, res) {
 		.find({
 			$or: [{userID: req.params.id}, {userIDTo: req.params.id}]
 		})
-		.exec(function (err, post){
+		.exec(function (err, post) {
 			if (err) {
-				res.send("post doesn't exist")
+				res.status(500).json({message: 'UNEXPECTED_ERROR'});
 			} else if (!post.length) {
-				res.send('Post not found');
+				res.status(404).json({message: 'POSTS_NOT_FOUND'});
 			} else if (post[0].privacy == 3 && req.auth.userID == post[0].userID) {
 				res.send(post);
 			} else if (req.auth.userID == post[0].userID) {
@@ -35,9 +35,9 @@ exports.allPosts = function(req, res) {
 						if (post[0].privacy == 1 && connection[0].connection == 1) {
 							res.send(post);
 						} else if (post[0].privacy == 2) {
-							res.send('Function under construction.');
+							res.status(500).json({message: 'UNDER_CONSTRUCTION'});
 						} else {
-							res.send('No permissions to view this post')
+							res.status(403).json({message: 'ACCESS_DENIED'});
 						}
 					});
 			}

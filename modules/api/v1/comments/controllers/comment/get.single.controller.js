@@ -11,12 +11,10 @@ exports.getComment = function (req, res) {
     })
     .exec(function (err, post){
       if (err) {
-        res.send('no comments found for post');
+        res.status(404).json({message: "COMMENT_NOT_FOUND"})
         return;
       }
-
       res.json(post[0])
-
     });
 
 }

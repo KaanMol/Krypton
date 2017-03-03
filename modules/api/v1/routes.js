@@ -5,8 +5,7 @@ var config = require('../../../config/config');
 router.use(jwt({secret: config.jwtSecret, requestProperty: 'auth'}).unless({path: ['/v1/auth/login', '/v1/auth/register']}));
 router.use(function (err, req, res, next) {
   if (err.name === 'UnauthorizedError') {
-    res.status(401);
-    res.json({"message" : "UNAUTHORIZED"});
+    res.status(401).json({"message" : "UNAUTHORIZED"});
   }
 });
 

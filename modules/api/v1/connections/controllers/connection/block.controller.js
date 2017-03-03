@@ -1,5 +1,4 @@
 // CHANGE WAY OF WORK, CHECK FOR CONNECTION IF NOT CREATE BLOCKED ONE OR SET TO 3
-// THIS WILL FAIL
 
 'use strict';
 
@@ -17,25 +16,19 @@ exports.blockRequest = function(req, res) {
 			})
 			.exec(function (err, connection){
 				if (err) {
-					res.json({
-						statusCode: 4
-					});
+					res.status(500).json({message: 'UNEXPECTED_ERROR'});
 				} else if (!connection.length){
-					res.json({
-						statusCode: 4
-					});
+					res.status(404).json({message: "CONNECTION_NOT_FOUND"});
 				} else {
 					connection[0].connection = 3;
 
 					connection[0].save(function(err, test) {
 						if ( err && err.code !== 11000 ) {
-							console.log(err);
-							console.log(err.code);
-							res.send('Another error showed up');
+							res.status(500).json({message: 'UNEXPECTED_ERROR'});
 							return;
 						}
 
-						res.json({statusCode: 1});
+						res.status(200).json({message: 'SUCCESS'});
 					});
 				}
 		});

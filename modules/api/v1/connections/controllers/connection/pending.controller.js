@@ -11,13 +11,9 @@ exports.pendingRequests = function (req, res) {
     })
     .exec(function (err, requests){
       if (err) {
-        res.json({
-          statusCode: 4
-        });
+        res.status(500).json({message: 'UNEXPECTED_ERROR'});
       } else if (!requests.length) {
-        res.json({
-          statusCode: 4
-        });
+        res.status(404).json({message: 'CONNECTION_NOT_FOUND'});
       } else {
         res.send(requests);
       }

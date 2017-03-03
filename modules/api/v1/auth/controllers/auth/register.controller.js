@@ -56,8 +56,7 @@ exports.register = function(req, res) {
 
 					newUser.save(function(err, user) {
 						if ( err && err.code !== 11000 ) {
-							console.log(err);
-							res.status(500).json({message: "Unexpected error"});
+							res.status(500).json({message: "UNEXPECTED_ERROR"});
 							return;
 						}
 						res.json({

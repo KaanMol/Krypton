@@ -9,7 +9,7 @@ exports.sendRequest = function(req, res) {
 	var id = Id.place(req.auth.userID, req.params.id);
 
 		if (req.auth.userID == req.params.id) {
-			res.json({statusCode: 2})
+			res.status(500).json({message: 'UNEXPECTED_ERROR'});
 		} else {
 			Connection.model
 				.find({
@@ -31,7 +31,6 @@ exports.sendRequest = function(req, res) {
 								} else if (!user.length) {
 									res.send("user doesn't exist")
 								} else {
-
 									var connection = new Connection.model({
 										user1: id[0],
 										user2: id[1],
@@ -43,18 +42,15 @@ exports.sendRequest = function(req, res) {
 
 									connection.save(function(err, test) {
 										if ( err && err.code !== 11000 ) {
-											console.log(err);
-											console.log(err.code);
-											res.send('Another error showed up');
+											res.status(500).json({message: 'UNEXPECTED_ERROR'});
 											return;
 										}
-
-										res.json({statusCode: 1});
+										res.status(200).json({message: 'SUCCESS'});
 									});
 								}
 						});
 					} else {
-						res.json({statusCode: 3})
+						res.status(500).json({message: 'EXISTING_REQUEST'});
 					}
 			});
 		}

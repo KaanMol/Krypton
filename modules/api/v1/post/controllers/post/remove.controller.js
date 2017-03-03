@@ -8,7 +8,6 @@ exports.removePost = function(req, res) {
 			_id: req.params.id
 		})
 		.exec(function (err, post){
-
 			Comments.model
 		    .find({
 		      postID: post[0]._id
@@ -16,26 +15,16 @@ exports.removePost = function(req, res) {
 		    .exec(function (err, comments){
 					if(req.auth.userID == post[0].userID) {
 						post[0].remove(function (err, success){
-								if (err) {
-									res.json({
-										statusCode: 4
-									});
-								}
-									res.json({
-										statusCode: 1
-									});
+							if (err) {
+								res.status(500).json({message: 'UNEXPECTED_ERROR'});
+							}
+							res.status(200).json({message: 'SUCCESS'});
 
 							});
 							comments.remove(function (err, success){});
 					} else {
-						res.json({statusCode: 5});
+						res.status(500).json({message: 'UNAUTHORIZED'});
 					}
-
-
 		  });
-
-
-
 		});
-
 }

@@ -7,19 +7,22 @@ exports.editPost = function(req, res) {
 		})
 		.exec(function (err, post){
 			if (err) {
-				res.send("post doesn't exist")
+				res.status(500).json({message: 'UNEXPECTED_ERROR'});
 			} else if (!post.length) {
-				res.send('Post not found');
+				res.status(404).json({message: 'POSTS_NOT_FOUND'});
 			}
 
 			if (post[0].userID != req.auth.userID) {
-				res.send("You can only edit your own posts!");
+				res.status(401).json({message: 'UNAUTHORIZED'});
 			} else {
 				if (req.body.privacy != undefined) {
-					if (req.body.privacy == 0 || req.body.privacy == 1 || req.body.privacy == 2 || req.body.privacy == 3) {
+					if (req.body.privacy == 0 ||
+							req.body.privacy == 1 ||
+							req.body.privacy == 2 ||
+							req.body.privacy == 3) {
 						post[0].privacy = req.body.privacy
 					} else {
-						res.send('incorrect integer send');
+						res.status(400).json({message: 'INVALID_REQUEST'});
 						return;
 					}
 				}
@@ -46,12 +49,10 @@ exports.editPost = function(req, res) {
 
 				post[0].save(function(err, test) {
 					if ( err && err.code !== 11000 ) {
-						console.log(err);
-						console.log(err.code);
-						res.send('Another error showed up');
+						res.status(500).json({message: 'UNEXPECTED_ERROR'});
 						return;
 					} else {
-						res.json({statusCode: 1});
+						res.status(200).json({message: 'SUCCESS'});
 					}
 				});
 			}

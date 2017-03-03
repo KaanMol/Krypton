@@ -10,11 +10,11 @@ exports.login = function(req, res) {
 		.select('+salt')
 		.exec(function (err, user){
 			if (err) {
-				res.status(500).json({message: "Unexpected error"})
+				res.status(500).json({message: "UNEXPECTED_ERROR"})
 			};
 
 			if (!user.length) {
-        		res.status(401).json({message: 'USER_NOT_FOUND'});
+    		res.status(401).json({message: 'USER_NOT_FOUND'});
   		} else {
 				var crypto = require('crypto'),
 						password = crypto.createHash('sha256')
