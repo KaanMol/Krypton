@@ -1,9 +1,9 @@
 'use strict';
-var router = require('express').Router(),
-  jwt = require('express-jwt'),
-  config = require('../../config/config'),
-  unless = require('express-unless'),
-  subdomain = require('express-subdomain');
+var router = require('express').Router();
+var jwt = require('express-jwt');
+var config = require('../../config/config');
+var unless = require('express-unless');
+var subdomain = require('express-subdomain');
 const path = require('path');
 
 // Routes for API version 1
