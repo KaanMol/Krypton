@@ -1,8 +1,8 @@
 'use strict';
-var router = require('express').Router(),
-  express = require('express'),
-  app = express(),
-  bodyParser = require('body-parser');
+var router = require('express').Router();
+var express = require('express');
+var app = express();
+var bodyParser = require('body-parser');
 
 const path = require('path');
 const fs = require('fs');
