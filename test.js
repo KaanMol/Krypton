@@ -6,5 +6,5 @@ var app = express();
 
 // example.com
 app.get('/', function(req, res) {
-    res.send('Homepage');
+  res.send('Homepage');
 });
