@@ -10,7 +10,7 @@ exports.createPost = function(req, res) {
 	  posted: Math.floor(Date.now() / 1000)
 	});
 
-	newPost.save(function(err, test) {
+	newPost.save(function(err, success) {
 		if ( err && err.code !== 11000 ) {
 			res.status(500).json({message: 'UNEXPECTED_ERROR'});
 			return;
@@ -30,7 +30,7 @@ exports.createPostTo = function(req, res) {
 	  posted: (Date.now() / 1000)
 	});
 
-	newPost.save(function(err, test) {
+	newPost.save(function(err, success) {
 		if ( err && err.code !== 11000 ) {
 			res.status(500).json({message: 'UNEXPECTED_ERROR'});
 			return;

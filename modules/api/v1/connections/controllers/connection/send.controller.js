@@ -40,7 +40,7 @@ exports.sendRequest = function(req, res) {
 										connectedSince: null
 									});
 
-									connection.save(function(err, test) {
+									connection.save(function(err, success) {
 										if ( err && err.code !== 11000 ) {
 											res.status(500).json({message: 'UNEXPECTED_ERROR'});
 											return;

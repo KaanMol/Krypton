@@ -47,7 +47,7 @@ exports.editPost = function(req, res) {
 					}
 				}
 
-				post[0].save(function(err, test) {
+				post[0].save(function(err, success) {
 					if ( err && err.code !== 11000 ) {
 						res.status(500).json({message: 'UNEXPECTED_ERROR'});
 						return;

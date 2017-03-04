@@ -9,7 +9,7 @@ exports.createComment = function(req, res) {
 	  created: Math.floor(Date.now() / 1000)
 	});
 
-	newComment.save(function(err, test) {
+	newComment.save(function(err, comment) {
 		if ( err && err.code !== 11000 ) {
 			res.status(500).json({message: "UNEXPECTED_ERROR"});
 			return;

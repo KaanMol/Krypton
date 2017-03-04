@@ -9,12 +9,12 @@ exports.getComment = function (req, res) {
       _id: req.params.commentID,
       postID: req.params.id
     })
-    .exec(function (err, post){
+    .exec(function (err, comment){
       if (err) {
         res.status(404).json({message: "COMMENT_NOT_FOUND"})
         return;
       }
-      res.json(post[0])
+      res.json(comment[0])
     });
 
 }

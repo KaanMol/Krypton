@@ -17,7 +17,7 @@ exports.acceptRequest = function(req, res) {
 			} else {
 				connection[0].connection = 1;
 				connection[0].connectedSince = Math.floor(Date.now() / 1000);
-				connection[0].save(function(err, test) {
+				connection[0].save(function(err, success) {
 					if ( err && err.code !== 11000 ) {
 						res.status(500).json({message: 'UNEXPECTED_ERROR'});
 						return;

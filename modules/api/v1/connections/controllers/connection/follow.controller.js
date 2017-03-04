@@ -22,7 +22,7 @@ exports.followRequest = function(req, res) {
 					res.status(404).json({message: 'CONNECTION_NOT_FOUND'});
 				} else {
 					connection[0].connection = 11;
-					connection[0].save(function(err, test) {
+					connection[0].save(function(err, success) {
 						if ( err && err.code !== 11000 ) {
 							res.status(500).json({message: 'UNEXPECTED_ERROR'});
 							return;

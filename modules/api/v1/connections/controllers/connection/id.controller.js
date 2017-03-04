@@ -1,7 +1,7 @@
 'use strict';
 
 exports.place = function(id1, id2) {
-  var testArray = [
+  var allChars = [
     'a',
     'b',
     'c',
@@ -41,9 +41,9 @@ exports.place = function(id1, id2) {
   var id = [];
 
   for (var i = 0; i < id1.length; i++) {
-    if (testArray.indexOf(id1.charAt(i)) == testArray.indexOf(id2.charAt(i))) {
+    if (allChars.indexOf(id1.charAt(i)) == allChars.indexOf(id2.charAt(i))) {
       continue;
-    } else if (testArray.indexOf(id1.charAt(i)) > testArray.indexOf(id2.charAt(i))) {
+    } else if (allChars.indexOf(id1.charAt(i)) > allChars.indexOf(id2.charAt(i))) {
       id[0] = id1;
       id[1] = id2;
       break;
