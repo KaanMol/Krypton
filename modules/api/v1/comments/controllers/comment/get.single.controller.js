@@ -3,7 +3,6 @@
 var Comments = require('../../models/comment.model');
 
 exports.getComment = function (req, res) {
-
   Comments.model
   .find({
     _id: req.params.commentID,
@@ -16,5 +15,4 @@ exports.getComment = function (req, res) {
     }
     res.json(comment[0])
   });
-
 }
