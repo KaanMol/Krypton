@@ -1,5 +1,5 @@
 var _ = require('lodash');
 
 module.exports = _.extend(
-	require('./search/usernameServices')
+	require('./search/username.controller')
 );

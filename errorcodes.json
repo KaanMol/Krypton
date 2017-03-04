@@ -1,0 +1,17 @@
+{
+  "USER_NOT_FOUND": "User not found",
+  "BAD_CREDENTIALS": "Wrong password",
+  "UNEXPECTED_ERROR": "Unexpected error",
+  "DUPLICATE_USERNAME": "Username is taken",
+  "DUPLICATE_EMAIL": "We've already an account with this email",
+  "COMMENTS_NOT_FOUND": "No comments found",
+  "COMMENT_NOT_FOUND": "No comment found",
+  "SUCCESS": "Success",
+  "UNAUTHORIZED": "Unauthorized",
+  "CONNECTION_NOT_FOUND": "Connection not found",
+  "EXISTING_REQUEST": "Request exists already",
+  "POSTS_NOT_FOUND": "No posts found",
+  "UNDER_CONSTRUCTION": "Function under construction",
+  "ACCESS_DENIED": "Access denied",
+  "INVALID_REQUEST": "Invalid request"
+}

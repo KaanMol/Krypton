@@ -1,4 +1,4 @@
-var User = require('../../../auth/models/userModel');
+var User = require('../../../auth/models/user.model');
 
 exports.profile = function(req, res) {
 	User.model
@@ -7,12 +7,9 @@ exports.profile = function(req, res) {
 		})
 		.exec(function (err, user){
 			if (err) {
-				res.status(404).send('Not found');
+				res.status(500).json({message: "UNEXPECTED_ERROR"});
 			} else if(!user.length) {
-				res.json({
-        			success: false,
-        			message: "Couldn't find user!"
-        		});
+				res.status(500).json({message: "USER_NOT_FOUND"});
 			} else {
 				if (user[0].privacy.profile == 0) {
 					res.json(user[0]);

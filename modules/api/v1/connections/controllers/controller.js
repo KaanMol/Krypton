@@ -1,12 +1,12 @@
 var _ = require('lodash');
 
 module.exports = _.extend(
-	require('./connection/sendRequestServices'),
-	require('./connection/statusServices'),
-	require('./connection/acceptRequestServices'),
-	require('./connection/removeRequestServices'),
-	require('./connection/followRequestServices'),
-	require('./connection/blockRequestServices'),
-	require('./connection/declineRequestServices'),
-	require('./connection/pendingRequests')
+	require('./connection/accept.controller'),
+	require('./connection/block.controller'),
+	require('./connection/decline.controller'),
+	require('./connection/follow.controller'),
+	require('./connection/pending.controller'),
+	require('./connection/remove.controller'),
+	require('./connection/send.controller'),
+	require('./connection/status.controller')
 );
