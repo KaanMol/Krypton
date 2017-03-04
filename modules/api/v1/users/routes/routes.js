@@ -1,9 +1,8 @@
 'use strict';
-var router = require('express').Router(),
-	controller = require('../controllers/controller')
+var router = require('express').Router();
+var controller = require('../controllers/controller');
 
-router.get('/:id', function(req,res){controller.profile(req, res)});
-
-// router.post('/register', function(req,res){controller.register(req, res)});
+router.get('/users/:id', function(req,res){controller.profile(req, res)});
+router.get('/picture/:id', function(req,res){controller.picture(req, res)});
 
 module.exports = router;

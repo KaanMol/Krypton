@@ -1,12 +1,12 @@
 var _ = require('lodash');
 
 module.exports = _.extend(
-	// require('./likes/addLike'),
-	// require('./likes/getLikes'),
-	// require('./likes/removeLike'),
-	require('./post/createPostServices'),
-	require('./post/readPostServices'),
-	require('./post/removePostServices'),
-	require('./post/editPostServices'),
-	require('./post/allPosts')
+  // require('./likes/addLike'),
+  // require('./likes/getLikes'),
+  // require('./likes/removeLike'),
+  require('./post/all.controller'),
+  require('./post/create.controller'),
+  require('./post/edit.controller'),
+  require('./post/read.controller'),
+  require('./post/remove.controller')
 );
