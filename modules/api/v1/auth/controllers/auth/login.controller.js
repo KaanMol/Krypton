@@ -26,10 +26,10 @@ exports.login = function(req, res) {
   			if (saltedPassword == user[0].password) {
   				res.json({
       			token: require('jsonwebtoken').sign({
-							 /*exp: Math.floor(Date.now() / 1000) + (60*60),*/
-							 userID: user[0]._id,
-							 admin: user[0].admin
-						 }, config.jwtSecret)
+							/*exp: Math.floor(Date.now() / 1000) + (60*60),*/
+						  userID: user[0]._id,
+							admin: user[0].admin
+						}, config.jwtSecret)
       		});
       	} else {
       		res.status(401).json({message: 'BAD_CREDENTIALS'});
