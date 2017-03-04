@@ -8,17 +8,11 @@ router.use(function (err, req, res, next) {
     res.status(401).json({"message" : "UNAUTHORIZED"});
   }
 });
-
 router.use('/auth', require('./auth/routes/routes'));
-
 router.use('/connections', require('./connections/routes/routes'));
-
 router.use('/user', require('./users/routes/routes'));
-
 router.use('/post', require('./post/routes/routes'));
-
 router.use('/comment', require('./comments/routes/routes'));
-
 router.use('/search', require('./search/routes/routes'));
 
 module.exports = router;
