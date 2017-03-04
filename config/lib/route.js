@@ -21,14 +21,5 @@ router.all('/', function(req, res) {
 
 // Routes for API version 1
 router.use('/', require('../../modules/api/routes'));
-	// var modules = fs.readdirSync(__dirname + '/../../modules/api/v1')
-	// 							.filter(file => fs.statSync(path.join(__dirname + '/../../modules/api/v1', file)).isDirectory())
-	//
-	// for (var i = 0; i<modules.length; i++) {
-	// 	if (modules[i] = "messenger") continue;
-	//
-	// 	require(path.join(__dirname + '/../../modules/api/v1/'+modules[i]+'/routes/routes'))(app)
-	// 	console.log(modules[i]);
-	// }
 
 module.exports = router
