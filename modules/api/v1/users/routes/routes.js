@@ -1,6 +1,6 @@
 'use strict';
-var router = require('express').Router(),
-	controller = require('../controllers/controller')
+var router = require('express').Router();
+var controller = require('../controllers/controller');
 
 router.get('/users/:id', function(req,res){controller.profile(req, res)});
 

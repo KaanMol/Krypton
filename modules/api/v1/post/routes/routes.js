@@ -1,6 +1,6 @@
 'use strict';
-var router = require('express').Router(),
-		controller = require('../controllers/controller')
+var router = require('express').Router();
+var controller = require('../controllers/controller')
 
 router.get('/all/:id', function(req,res){controller.allPosts(req, res)});
 
@@ -13,7 +13,5 @@ router.post('/:id', function(req,res){controller.createPostTo(req, res)});
 router.delete('/:id', function(req,res){controller.removePost(req, res)});
 
 router.put('/:id', function(req,res){controller.editPost(req, res)});
-
-
 
 module.exports = router;
