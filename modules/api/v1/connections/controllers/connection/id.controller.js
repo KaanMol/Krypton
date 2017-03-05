@@ -38,22 +38,20 @@ exports.place = function(id1, id2) {
     '9',
     '0'];
 
-  var id = [];
-
-  for (var i = 0; i < id1.length; i++) {
-    if (allChars.indexOf(id1.charAt(i)) == allChars.indexOf(id2.charAt(i))) {
-      continue;
-    } else if (allChars.indexOf(id1.charAt(i)) > allChars.indexOf(id2.charAt(i))) {
-      id[0] = id1;
-      id[1] = id2;
-      break;
-    } else {
-      id[0] = id2;
-      id[1] = id1;
-      break;
+    var id = [];
+    
+    for (var i = 0; i < id1.length; i++) {
+      if (allChars.indexOf(id1.charAt(i)) == allChars.indexOf(id2.charAt(i))) {
+        continue;
+      } else if (allChars.indexOf(id1.charAt(i)) > allChars.indexOf(id2.charAt(i))) {
+        id[0] = id1;
+        id[1] = id2;
+        break;
+      } else {
+        id[0] = id2;
+        id[1] = id1;
+        break;
+      }
     }
+    return id;
   }
-
-  return id;
-
-}
