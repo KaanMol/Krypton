@@ -1,8 +1,8 @@
 'use strict';
 
-var Connection = require('../../models/connectionModel');
-var User = require('../../../auth/models/userModel');
-var Id = require('../../controllers/connection/idPlacement');
+var Connection = require('../../models/connection.model');
+var User = require('../../../auth/models/user.model');
+var Id = require('../../controllers/connection/id.controller');
 
 exports.sendRequest = function(req, res) {
   var id = Id.place(req.auth.userID, req.params.id);

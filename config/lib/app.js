@@ -21,7 +21,7 @@ mongoose.connect('mongodb://'+config.host+'/'+config.appName);
 
 exports.start = function() {
   app.use('/', require('./route'));
-
+  if (config.modes == "dev") {app.set('subdomain offset', 1)};
   net.createServer(function(socket) {
     messenger.controller(socket);
   }).listen(9752);

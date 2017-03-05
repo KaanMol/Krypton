@@ -15,5 +15,5 @@ exports.jwtSecret = 'secret';
 // Web protocol
 exports.webProtocol = "http";
 
-//Hosttype
-exports.hostType = "local";
+//modes / dev - production
+exports.modes = "production";
