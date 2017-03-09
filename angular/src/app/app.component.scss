@@ -7,7 +7,7 @@
   background-color: #141422;
 }
 
-.login {
+.login-form {
   position: fixed;
   background-color: rgba(48, 48, 67, 0.4);
   border-left: 2px solid;
@@ -21,8 +21,23 @@
   top: 0;
   left: 35%;
   height: 100vh;
-  input {
-    width: 100%;
-    line-height: 30px;
+  display: table;
+  .question-container {
+    display: table-cell;
+    vertical-align: middle;
+    input {
+      background-color: rgba(48, 48, 67, 0.9);
+      outline: none;
+      color: #ffffff;
+      font-size: 25px;
+      border: none;
+      padding: 0 20px;
+      line-height: 40px;
+      margin-top: 10px;
+      width: 100%;
+    }
+    input:first-child {
+      margin-top: 0;
+    }
   }
 }

@@ -76,9 +76,9 @@
       },
       "onclick": {
         "enable": false,
-        "mode": "push"
+        "mode": "repulse"
       },
-      "resize": false
+      "resize": true
     },
     "modes": {
       "grab": {
