@@ -22,6 +22,7 @@
   left: 35%;
   height: 100vh;
   display: table;
+  animation: open 2s;
   .question-container {
     display: table-cell;
     vertical-align: middle;
@@ -39,5 +40,11 @@
     input:first-child {
       margin-top: 0;
     }
+  }
+}
+
+@keyframes open {
+  from {
+    width: 0;
   }
 }
