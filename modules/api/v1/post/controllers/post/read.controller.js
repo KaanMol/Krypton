@@ -6,10 +6,8 @@ var User = require('../../../auth/models/user.model');
 var Id = require('../../../connections/controllers/connection/id.controller');
 
 module.exports = {
-  byUser: function(req, res) {
-
-    let userPrivacy;
-
+  byUser: function(req, res) 
+  {
     User.model
     .find({
       _id: req.params.id
@@ -18,53 +16,67 @@ module.exports = {
       if (err || !user.length) {
         res.status(400).json({message: 'USER_NOT_FOUND'});
         return;
+      } else if (req.params.id === req.auth.userID ) {
+        Post.model
+        .find({
+          $or: [{userID: req.params.id}, {userIDTo: req.params.id}]
+        })
+        .exec(function (err, posts) { 
+          if(!posts.length) {
+            res.send([]);
+            return;
+          }
+          res.send(posts);
+          return;
+         })
       }
-      userPrivacy = user[0].privacy.profile;
 
-      Post.model
+      let id = Id.place(req.auth.userID, req.params.id);
+      
+      Connection.model
       .find({
-        $or: [{userID: req.params.id}, {userIDTo: req.params.id}]
+        user1: id[0],
+        user2: id[1]
       })
-      .exec(function (err, posts) {
+      .exec(function (err, connection) {
         if (err) {
           res.status(500).json({message: 'UNEXPECTED_ERROR'});
           return;
-        } else if (!posts.length) {
+        } else if (connection[0].connection === 4) {
           res.send([]);
           return;
-        } else if (req.params.id == req.auth.userID) {
-          res.send(posts);
-          return;
+        } else if (user[0].privacy.profile === 0 && connection[0].connection !== 1) {
+          Post.model
+          .find({
+            $or: [{userID: req.params.id}, {userIDTo: req.params.id}],
+            privacy: 0
+          })
+          .exec(function (err, posts) { 
+            if(!posts.length) {
+              res.send([]);
+              return;
+            }
+            res.send(posts);
+          });
+        } else if ((user[0].privacy.profile === 1 || user[0].privacy.profile === 0) 
+        && connection[0].connection === 1) {
+          Post.model
+          .find({
+            $and: [
+              {$or: [{userID: req.params.id}, {userIDTo: req.params.id}]},
+              {$or: [{privacy: 0}, {privacy: 1}]}
+            ]
+          })
+          .exec(function (err, posts) { 
+            if(!posts.length) {
+              res.send([]);
+            }
+            res.send(posts);
+          });
+        } else {
+          res.send([]);
         }
-
-        let id = Id.place(req.params.id, req.auth.userID);
-        let userConnection;
-
-        Connection.model
-        .find({
-          user1: id[0],
-          user2: id[1]
-        })
-        .exec(function (err, connection) {
-          if (err) {
-            res.status(500).json({message: 'UNEXPECTED_ERROR'});
-            return;
-          } else if (!connection.length) {
-            userConnection = null;
-          }
-          userConnection = connection.connection;
-        });
-
-        if (userPrivacy === 2) {
-          res.send([]);
-          return;
-        } else if ((userPrivacy === 1 && userConnection === 1) || 
-        (userPrivacy === 0 && userConnection !== 4)) {
-          res.send(posts);
-          return;
-        } 
-          res.send([]);
-        });
+      })
     });
   },
   byPostId: function(req, res) {
