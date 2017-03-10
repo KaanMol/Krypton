@@ -1,40 +1,61 @@
 var Post = require('../../models/post.model');
 
-exports.createPost = function(req, res) {
-  var newPost = new Post.model({
-    userID: req.auth.userID,
-    userIDTo: null,
-    privacy: req.body.privacy,
-    post: req.body.post,
-    edited: [],
-    posted: Math.floor(Date.now() / 1000)
-  });
+module.exports = {
+  create: function(req, res)
+  {
+    var User = require('../../../auth/models/user.model');
+    User.model
+    .find({
+      _id: req.auth.userID
+    })
+    .exec(function (err, user) {
+      let privacy;
+      if (req.body.privacy === null || 
+      (req.body.privacy < 0 || req.body.privacy > 2)) {
+        privacy = user[0].privacy.post;
+      } else {
+        privacy = req.params.privacy;
+      }
 
-  newPost.save(function(err, success) {
-    if ( err && err.code !== 11000 ) {
-      res.status(500).json({message: 'UNEXPECTED_ERROR'});
+      var createPost = new Post.model({
+        userID: req.auth.userID,
+        userIDTo: null,
+        privacy: privacy,
+        post: req.body.post,
+        edited: [],
+        posted: Math.floor(Date.now() / 1000)
+      });
+
+      createPost.save(function(err, post) {
+        if ( err && err.code !== 11000 ) {
+          res.status(500).json({message: 'UNEXPECTED_ERROR'});
+          return;
+        }
+        res.json(newPost[0]);
+      });
+    })
+  },
+  createTo: function(req, res)
+  {
+    if (req.params.id === req.auth.userID) {
+      res.status(400).json({message: 'ACTION_TO_SELF'});
       return;
-    }
-    res.json(newPost)
-  });
-}
+    };
+    var newPost = new Post.model({
+      userID: req.auth.userID,
+      userIDTo: req.params.id,
+      privacy: req.body.privacy,
+      post: req.body.post,
+      edited: [],
+      posted: (Date.now() / 1000)
+    });
 
-exports.createPostTo = function(req, res) {
-  //Check if blocked and privacy shit
-  var newPost = new Post.model({
-    userID: req.auth.userID,
-    userIDTo: req.params.id,
-    privacy: req.body.privacy,
-    post: req.body.post,
-    edited: [],
-    posted: (Date.now() / 1000)
-  });
-
-  newPost.save(function(err, success) {
-    if ( err && err.code !== 11000 ) {
-      res.status(500).json({message: 'UNEXPECTED_ERROR'});
-      return;
-    }
-    res.json(newPost)
-  });
-}
+    newPost.save(function(err, success) {
+      if ( err && err.code !== 11000 ) {
+        res.status(500).json({message: 'UNEXPECTED_ERROR'});
+        return;
+      }
+      res.json(newPost)
+    });
+  }
+};
