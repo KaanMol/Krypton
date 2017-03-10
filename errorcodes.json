@@ -13,5 +13,6 @@
   "POSTS_NOT_FOUND": "No posts found",
   "UNDER_CONSTRUCTION": "Function under construction",
   "ACCESS_DENIED": "Access denied",
-  "INVALID_REQUEST": "Invalid request"
+  "INVALID_REQUEST": "Invalid request",
+  "ACTION_TO_SELF": "You can't perform this action on yourself"
 }
