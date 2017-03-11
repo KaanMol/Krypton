@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-declare var particlesJS;
 
 @Component({
   selector: 'app-root',
@@ -7,12 +6,9 @@ declare var particlesJS;
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-  title = 'app works!';
-
   constructor () {
   }
 
   ngOnInit () {
-    particlesJS.load('particles-js', 'assets/particles.json');
   }
 }

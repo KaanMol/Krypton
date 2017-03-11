@@ -4,7 +4,7 @@
   left: 0;
   width: 100%;
   height: 100vh;
-  background-color: #141422;
+  background: linear-gradient(to top, #141422, #202040);
 }
 
 .login-form {
@@ -22,7 +22,6 @@
   left: 35%;
   height: 100vh;
   display: table;
-  animation: open 2s;
   .question-container {
     display: table-cell;
     vertical-align: middle;

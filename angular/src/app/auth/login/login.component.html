@@ -1,0 +1,13 @@
+<div id="particles-js"></div>
+<div class="login-form">
+  <form (ngOnSubmit)="login()" *ngIf="!register" class="question-container">
+    <input type="text" placeholder="username">
+    <input type="text" placeholder="password">
+  </form>
+  <form (ngOnSubmit)="register()" *ngIf="register" class="question-container">
+    <input type="text" placeholder="username">
+    <input type="text" placeholder="email">
+    <input type="text" placeholder="password">
+    <input type="text" placeholder="repeat password">
+  </form>
+</div>
