@@ -1,0 +1,49 @@
+#particles-js {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(to top, #141422, #202040);
+}
+
+.login-form {
+  position: fixed;
+  background-color: rgba(48, 48, 67, 0.4);
+  border-left: 2px solid;
+  border-image: linear-gradient(
+      to bottom,
+      rgba(204, 102, 246, 0.6),
+      rgba(83, 0, 236, 0.6)
+  ) 1 100%;
+  border-right: 2px rgba(48, 48, 67, 0.6) solid;
+  width: 30%;
+  top: 0;
+  left: 35%;
+  height: 100vh;
+  display: table;
+  .question-container {
+    display: table-cell;
+    vertical-align: middle;
+    input {
+      background-color: rgba(48, 48, 67, 0.9);
+      outline: none;
+      color: #ffffff;
+      font-size: 25px;
+      border: none;
+      padding: 0 20px;
+      line-height: 40px;
+      margin-top: 10px;
+      width: 100%;
+    }
+    input:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+@keyframes open {
+  from {
+    width: 0;
+  }
+}

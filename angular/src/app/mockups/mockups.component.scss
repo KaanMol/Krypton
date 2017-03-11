@@ -1,0 +1,21 @@
+
+*, html {
+  box-sizing: border-box;
+}
+
+.container {
+  .mockup {
+    cursor: pointer;
+    width: 250px;
+    margin: 10px;
+    height: 100px;
+    padding: 20px;
+    background: linear-gradient(to top, #359ced, #7e57f2);
+    border-bottom: 3px solid #7e57f2;
+    display: inline-block;
+    &:hover {
+      background: linear-gradient(to top, #7e57f2, #ea6e29);
+      border-bottom: 3px solid #ea6e29;
+    }
+  }
+}
